@@ -43,7 +43,7 @@ func (c *Converter) SetBinary(b string) error {
 func (c *Converter) Convert(in []byte) (out []byte, err error) {
 	var stdout, stderr bytes.Buffer
 
-	cmd := exec.Command(c.bin, "-z", "-e", "-", "-f", "-")
+	cmd := exec.Command(c.bin, "--pipe", "--export-type=png", "--export-filename=-")
 	cmd.Stdin = bytes.NewBuffer(in)
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
